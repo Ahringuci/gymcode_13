@@ -1,11 +1,15 @@
 import "./App.css";
-import Calculator from "./components/calculator";
+import Alert from "./components/alert";
 
 function App() {
     return (
         <div>
-            <h2>[Bài tập] Xây dựng ứng dụng máy tính đơn giản</h2>
-            <Calculator />
+            <h2>[Bài tập] Xây dựng Alert component</h2>
+            <Alert
+                alertTxt={
+                    " Cảnh báo! Tài nguyên bạn vừa truy cập không tồn tại."
+                }
+            />
         </div>
     );
 }
