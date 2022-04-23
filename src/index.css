@@ -1,3 +1,10 @@
 .App {
     padding: 20px;
 }
+
+label,
+input[type="text"],
+input[type="password"] {
+    display: block;
+    margin-bottom: 4px;
+}

@@ -5,7 +5,7 @@ import Homework from "./components/homework";
 const App = () => {
     return (
         <div className="App">
-            <Title title="Kiểm tra phím được nhập vào" />
+            <Title title="Xử lý sự kiện Login/Logout với form đăng nhập bằng Bootstrap" />
             <Homework />
         </div>
     );
