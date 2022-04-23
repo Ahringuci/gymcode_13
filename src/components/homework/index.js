@@ -1,19 +1,34 @@
 import React from "react";
 
 const Homework = () => {
-    const [hello, setHello] = React.useState("");
+    const [user, setUser] = React.useState({ name: "", password: "" });
 
     const handleChange = (e) => {
-        setHello(e.target.value);
+        let _user = { ...user };
+        _user[e.target.name] = e.target.value;
+        setUser(_user);
+    };
+
+    const handleLogin = () => {
+        alert(JSON.stringify(user));
     };
     return (
         <>
             <input
+                name="name"
                 type="text"
-                value={hello}
+                placeholder="username"
+                value={user.name}
                 onChange={(e) => handleChange(e)}
             />
-            <p>Hello: {hello}</p>
+            <input
+                name="password"
+                type="password"
+                placeholder="password"
+                value={user.password}
+                onChange={(e) => handleChange(e)}
+            />
+            <button onClick={handleLogin}>Login</button>
         </>
     );
 };
