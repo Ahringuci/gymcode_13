@@ -1,39 +1,64 @@
 import React from "react";
 
 const Homework = () => {
-    const [data, setData] = React.useState({
-        list: [],
-        item: "",
+    const [userData, setUserData] = React.useState({
+        form: { email: "", password: "", remember: false },
+        isValid: false,
+        isLogin: false,
     });
 
     const handleChange = (e) => {
-        let _data = { ...data };
-        _data.item = e.target.value;
-        setData(_data);
+        const { form } = userData;
+        form[e.target.name] = e.target.value;
+
+        const val = form.email && form.password ? true : false;
+
+        setUserData({ form, isValid: val });
     };
 
-    const handleAddItem = () => {
-        if (data.item) {
-            let _list = [...data.list];
-            _list.push(data.item);
-            console.log(_list);
-            setData({ list: _list, item: "" });
-        }
+    const handleSubmit = () => {
+        const { isValid } = userData;
+        setUserData({ isLogin: isValid });
     };
+
+    const handleLogout = () => {
+        setUserData({
+            form: { email: "", password: "", remember: false },
+            isValid: false,
+            isLogin: false,
+        });
+    };
+
     return (
         <>
-            {console.log("first")}
-            <input
-                type="text"
-                value={data.item}
-                onChange={(e) => handleChange(e)}
-            />
+            {userData.isLogin ? (
+                <div>
+                    <h2>Welcome</h2>
+                    <button onClick={handleLogout}> Logout</button>
+                </div>
+            ) : (
+                <div>
+                    <label>Email</label>
+                    <input
+                        name="email"
+                        type="email"
+                        value={userData.form.email}
+                        onChange={(e) => handleChange(e)}
+                    />
 
-            <button onClick={handleAddItem}>Add</button>
+                    <label>Password</label>
+                    <input
+                        name="password"
+                        type="password"
+                        value={userData.form.password}
+                        onChange={(e) => handleChange(e)}
+                    />
 
-            {data.list.length > 0
-                ? data.list.map((item, index) => <p key={index}>{item}</p>)
-                : "no work todo"}
+                    <button disabled={!userData.isValid} onClick={handleSubmit}>
+                        Login
+                    </button>
+                </div>
+            )}
         </>
     );
 };
